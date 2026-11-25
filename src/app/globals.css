@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+:root {
+  --orzr-bg: #e4e1da;
+  --orzr-bg-radial: radial-gradient(ellipse at 17% 6%, #b9b6ad 0%, #d2cfc7 33%, #e2dfd8 61%, #eeece7 100%);
+  --orzr-text: #20211f;
+  --orzr-muted: #64615c;
+  --orzr-panel: #eeebe5;
+  --font-sans: "Helvetica Neue", Arial, sans-serif;
+  /* Accent: purple */
+  --accent: #6638B5;
+  --accent-hover: #8B5CF6;
+  --accent-dark: #4C1D95;
+  --accent-glow: rgba(102, 56, 181, 0.35);
+}
+
+@theme inline {
+  --color-background: var(--orzr-bg);
+  --color-foreground: var(--orzr-text);
+  --color-muted: var(--orzr-muted);
+  --color-panel: var(--orzr-panel);
+  --font-sans: var(--font-sans);
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  background: var(--orzr-bg);
+  color: var(--orzr-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.02em;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.orzr-brand { letter-spacing: .05em; font-weight: 900; }
+
+button { font: inherit; cursor: pointer; }
+
+input, select, textarea { font: inherit; }
+
+.container-page { max-width: 1440px; margin: 0 auto; padding: 0 40px; }
+
+@media (max-width: 768px) { .container-page { padding: 0 20px; } }
+
+.fade-in { animation: fadeIn .6s ease both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px);} to { opacity:1; transform:none;} }
+
+.hover-lift { transition: transform .4s ease, box-shadow .4s ease; }
+.hover-lift:hover { transform: translateY(-4px); }
+
+.product-card img { transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+.product-card:hover img { transform: scale(1.04); }
+
+.btn-primary { background: var(--accent); color: #fff; padding: 14px 28px; letter-spacing: .18em; font-size: 11px; border: 1px solid var(--accent); transition: all .3s ease; font-weight: 600; }
+.btn-primary:hover { background: var(--accent-hover); color: #fff; transform: translateY(-2px); box-shadow: 0 8px 24px var(--accent-glow); }
+
+.btn-ghost { background: transparent; color: var(--orzr-text); padding: 14px 28px; letter-spacing: .18em; font-size: 11px; border: 1px solid var(--accent); transition: all .3s ease; }
+.btn-ghost:hover { background: var(--accent); color: #fff; }
+
+.eyebrow { letter-spacing: .2em; font-size: 10px; color: var(--orzr-muted); text-transform: uppercase; }
+
+/* Accent badges */
+.badge { display: inline-block; padding: 2px 10px; font-size: 9px; letter-spacing: .18em; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent-dark); background: transparent; }
+.badge--solid { background: var(--accent); color: #fff; border-color: var(--accent); }
+.badge--pulse { animation: pulse 1.6s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 var(--accent-glow); } 50% { box-shadow: 0 0 0 8px transparent; } }
+
+/* Focus rings */
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent) !important; box-shadow: 0 0 0 2px var(--accent-glow); }
+
+/* Links hover */
+a { transition: color .3s ease; }
+a:hover { color: var(--accent-dark); }
+
+/* Scroll progress */
+.scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); z-index: 9999; transition: width .1s linear; }
+
+/* Product card hover glow */
+.product-card { transition: box-shadow .3s ease, transform .3s ease; }
+.product-card:hover { box-shadow: 0 0 0 1px var(--accent), 0 12px 32px var(--accent-glow); }
+
+.site-nav a { position: relative; }
+.site-nav a::after { content: ''; position: absolute; left: 0; bottom: -4px; width: 0; height: 2px; background: var(--accent); transition: width .3s ease; }
+.site-nav a:hover::after { width: 100%; }
